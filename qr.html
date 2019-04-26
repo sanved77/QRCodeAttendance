@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Code Generate</title>
+</head>
+<body onload="dateF()">
+	<h1 id="date" style="text-align: center;"></h1>
+
+	<h1 style="text-align: center;">QR CODE</h1>
+	<!-- <p id="date"></p> -->
+</body>
+<script>
+	 
+		function dateF() {
+		n =  new Date();
+		y = n.getFullYear();
+		m = n.getMonth() + 1;
+		d = n.getDate();
+		document.getElementById("date").innerHTML = "Today's Date: "+m + "/" + d + "/" + y;
+		}
+</script>
+</script>
+</html>
