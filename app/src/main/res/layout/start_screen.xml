@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Attendance App"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="CS 541"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="38sp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/stu"/>
+
+    <EditText
+        android:id="@+id/etUser"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:hint="BU Email"
+        android:paddingStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        android:paddingEnd="10dp" />
+
+    <EditText
+        android:id="@+id/etPass"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:paddingStart="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="16dp"
+        android:paddingEnd="10dp" />
+
+    <Button
+        android:id="@+id/bLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom"
+        android:text="Login"/>
+
+
+</LinearLayout>
