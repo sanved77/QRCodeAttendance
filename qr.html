@@ -32,9 +32,13 @@
 		document.getElementById("date").innerHTML = "Today's Date: "+m + "/" + d + "/" + y;
 		}
 		function gen(){
-			a=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-			b=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-			document.getElementById("gena").src = "http://chart.apis.google.com/chart?cht=qr&chs=128x128&chl="+a+b;
+			// a=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			// b=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			n =  new Date();
+			y = n.getFullYear();
+			m = n.getMonth() + 1;
+			d = n.getDate();
+			document.getElementById("gena").src = "http://chart.apis.google.com/chart?cht=qr&chs=128x128&chl="+m+"-"+d+"-"+y;
 		
 		}
 		function start(){
