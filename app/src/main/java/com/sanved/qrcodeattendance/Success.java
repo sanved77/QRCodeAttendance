@@ -10,5 +10,12 @@ public class Success extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.success);
+
+        /*if(savedInstanceState == null){
+
+        }else{
+            String response
+        }*/
+
     }
 }

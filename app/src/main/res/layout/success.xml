@@ -17,6 +17,17 @@
         android:layout_marginTop="32dp"
         android:text="Attendance Recorded !"/>
 
+    <TextView
+        android:id="@+id/tvWel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/green"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:text="4/26/2019"/>
+
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
