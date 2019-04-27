@@ -11,13 +11,16 @@
 	  width: 20%;
 	}
 </style>
-<body onload="dateF()">
+<body onload="start() ">
 	<h1 id="date" style="text-align: center;"></h1>
 
 	<h1 style="text-align: center;">QR CODE</h1>
 	<br>
-	<img src="qr.png" class="center">
+	<!-- <img src="qr.png" class="center"> -->
+	
+	<img id="gena" class="center" />
 	<!-- <p id="date"></p> -->
+
 </body>
 <script>
 	 
@@ -28,6 +31,18 @@
 		d = n.getDate();
 		document.getElementById("date").innerHTML = "Today's Date: "+m + "/" + d + "/" + y;
 		}
+		function gen(){
+			a=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			b=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			document.getElementById("gena").src = "http://chart.apis.google.com/chart?cht=qr&chs=128x128&chl="+a+b;
+		
+		}
+		function start(){
+			dateF();
+			gen();
+		}
+
 </script>
+
 </script>
 </html>
