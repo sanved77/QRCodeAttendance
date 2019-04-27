@@ -8,7 +8,7 @@
 	  display: block;
 	  margin-left: auto;
 	  margin-right: auto;
-	  width: 20%;
+	  /*width: 20%;*/
 	}
 </style>
 <body onload="start() ">
@@ -38,7 +38,7 @@
 			y = n.getFullYear();
 			m = n.getMonth() + 1;
 			d = n.getDate();
-			document.getElementById("gena").src = "http://chart.apis.google.com/chart?cht=qr&chs=128x128&chl="+m+"-"+d+"-"+y;
+			document.getElementById("gena").src = "http://chart.apis.google.com/chart?cht=qr&chs=500x500&chl="+m+"-"+d+"-"+y;
 		
 		}
 		function start(){
