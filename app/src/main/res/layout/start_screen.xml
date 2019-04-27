@@ -7,7 +7,7 @@
     android:background="@color/blue"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".StartScreen">
 
     <TextView
         android:layout_width="wrap_content"
