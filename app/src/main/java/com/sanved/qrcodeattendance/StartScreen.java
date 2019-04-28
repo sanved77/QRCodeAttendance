@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -56,21 +57,29 @@ public class StartScreen extends AppCompatActivity {
     }
 
     public void sendData(){
+        
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 //Toast.makeText(StartScreen.this, ""+response, Toast.LENGTH_SHORT).show();
-                Log.i("Login Successful",""+response);
+                Log.i("Login",""+response);
                 if(response.contains("[]")){
                     Toast.makeText(StartScreen.this, "Login failed", Toast.LENGTH_SHORT).show();
                 }else{
-
-                    //JSONObject jsnobject = new JSONObject(response);
-                    //Toast.makeText(StartScreen.this, "nagdi bai !!!", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(StartScreen.this, ScanScreen.class);
-                    startActivity(i);
+                    try{
+                        JSONArray jArr = new JSONArray(response);
+                        JSONObject jObj = jArr.getJSONObject(0);
+                        String name = jObj.getString("sid");
+                        //Toast.makeText(StartScreen.this, "nagdi - "+name, Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(StartScreen.this, ScanScreen.class);
+                        i.putExtra("name",name);
+                        startActivity(i);
+                    }catch(Exception e){
+                        Log.e("Login","JSON Exception");
+                        Toast.makeText(StartScreen.this, "JSON Exception", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }, new Response.ErrorListener() {

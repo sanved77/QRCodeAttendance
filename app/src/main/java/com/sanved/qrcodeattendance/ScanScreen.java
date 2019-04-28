@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blikoon.qrcodescanner.QrCodeActivity;
@@ -16,6 +17,8 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 public class ScanScreen extends AppCompatActivity {
 
     Button scan;
+    TextView tvWel;
+    String name;
 
     private static final int REQUEST_CODE_QR_SCAN = 101;
 
@@ -23,6 +26,21 @@ public class ScanScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_screen);
+
+        if(savedInstanceState == null){
+
+            Bundle extras = getIntent().getExtras();
+
+            name = extras.getString("name");
+
+        }else{
+
+            name = (String) savedInstanceState.getSerializable("name");
+
+        }
+
+        tvWel = findViewById(R.id.tvWel);
+        tvWel.setText("Welcome " + name + " !");
 
         scan = findViewById(R.id.buttonScan);
 
