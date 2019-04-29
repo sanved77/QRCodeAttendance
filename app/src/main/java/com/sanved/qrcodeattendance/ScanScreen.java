@@ -12,13 +12,26 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.blikoon.qrcodescanner.QrCodeActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ScanScreen extends AppCompatActivity {
 
     Button scan;
     TextView tvWel;
-    String name;
+    String name,day,month,year;
+    String url = "http://wiseassenterprises.com/attn/regAtt.php";
 
     private static final int REQUEST_CODE_QR_SCAN = 101;
 
@@ -58,7 +71,7 @@ public class ScanScreen extends AppCompatActivity {
 
         if(resultCode != Activity.RESULT_OK)
         {
-            Log.d("Scan","COULD NOT GET A GOOD RESULT.");
+            Log.d("Scan","Bad QR Result");
             if(data==null)
                 return;
             //Getting the passed result
@@ -82,12 +95,55 @@ public class ScanScreen extends AppCompatActivity {
             // String token
             String tokens[] = result.split("-");
 
-            Intent i = new Intent(ScanScreen.this, Success.class);
-            i.putExtra("day", tokens[0]);
-            i.putExtra("month", tokens[1]);
-            i.putExtra("year", tokens[2]);
-            startActivity(i);
+            month = tokens[0];
+            day = tokens[1];
+            year = tokens[2];
+            sendData();
+
 
         }
+    }
+
+    public void sendData(){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.i("Scan",""+response);
+                if(response.contains("error")){
+                    Toast.makeText(ScanScreen.this, "Upload failed", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent i = new Intent(ScanScreen.this, Success.class);
+                    i.putExtra("day",day);
+                    i.putExtra("month",month);
+                    i.putExtra("year",year);
+                    startActivity(i);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(ScanScreen.this, "my error :"+error, Toast.LENGTH_LONG).show();
+                Log.i("Something went wrong",""+error);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+
+
+                Map<String,String> map = new HashMap<>();
+                map.put("sid", name);
+
+                map.put("month", month);
+                map.put("day", day);
+                map.put("year", year);
+
+                return map;
+            }
+        };
+        queue.add(request);
     }
 }
